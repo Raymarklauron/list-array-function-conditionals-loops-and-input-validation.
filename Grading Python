@@ -1,0 +1,49 @@
+from array import array
+
+# FUNCTION with INPUT VALIDATION
+def get_valid_score():
+    while True:                                   # loop until valid
+        text = input("Enter a score (0-100): ")
+        if text.isdigit() and 0 <= int(text) <= 100:
+            return int(text)
+        print("Invalid. Please enter a whole number from 0 to 100.")
+
+# FUNCTION to compute the average
+def average(numbers):
+    return sum(numbers) / len(numbers)
+
+# FUNCTION to turn a score into a grade (CONDITIONALS)
+def get_grade(score):
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C"
+    else:
+        return "Needs improvement"
+
+# LIST: stores student names
+names = ["Ana", "Ben", "Cara"]
+
+# ARRAY: stores integer scores only
+scores = array("i")
+
+# FOR LOOP: collect one score per student
+for name in names:
+    print("Student:", name)
+    scores.append(get_valid_score())
+
+# FOR LOOP with index: show each result
+print("\n--- Results ---")
+for i in range(len(names)):
+    print(names[i], "-", scores[i], "-", get_grade(scores[i]))
+
+# Final summary
+avg = average(scores)
+print("\nClass average:", round(avg, 1))
+
+if avg >= 75:
+    print("The class passed.")
+else:
+    print("The class needs more support.")
